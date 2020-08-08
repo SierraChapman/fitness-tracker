@@ -1,5 +1,6 @@
 // import dependencies 
 const express = require("express");
+const db = require("../models");
 
 // create router
 const router = express.Router();
@@ -7,11 +8,23 @@ const router = express.Router();
 // add routes
 
 /*
-Routes needed:
-
 GET /api/workouts
 for getting array of workout data
 returns JSON array of workout objects
+*/
+
+router.get("/api/workouts", (req, res) => {
+  db.Workout.find({})
+    .then(dbWorkout => {
+      res.json(dbWorkout);
+    })
+    .catch(err => {
+      res.json(err);
+    })
+})
+
+/*
+Routes needed:
 
 PUT /api/workouts/:id
 for adding an exercise to a workout
