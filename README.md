@@ -10,13 +10,11 @@ This application allows users to add exercises to a their current workout or to 
 
 * [Demonstration](#demonstration)
 
-* [Code Explanation](#code-explanation)
+* [Code Highlights](#code-highlights)
 
 * [Technologies Used](#technologies-used)
 
 * [Deployed Link](#deployed-link)
-
-* [Tests](#tests)
 
 * [Acknowledgements](#acknowledgements)
 
@@ -50,7 +48,7 @@ Viewing the stats dashboard:
 
 ![Demonstration of the stats page](readme-gifs/fitness-tracker-3.gif)
 
-## Code Explanation
+## Code Highlights
 
 To impose structure on the database, I created Mongoose schemas for exercises and workouts and a model for workouts. The following code snippet defines the workout schema. It includes a date and an array of exercises, which must adhere to the exercise schema (separately defined).
 
@@ -85,10 +83,6 @@ const WorkoutSchema = new Schema({
 ## Deployed Link
 
 * [See Live Site](https://fitness-tracker-sc.herokuapp.com/)
-
-## Tests
-
-To run tests, run the following command:
 
 ## Acknowledgements
 
