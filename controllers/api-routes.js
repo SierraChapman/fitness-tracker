@@ -46,17 +46,28 @@ router.put("/api/workouts/:id", (req, res) => {
 });
 
 /*
-Routes needed:
-
-PUT /api/workouts/:id
-for adding an exercise to a workout
-accepts JSON
-returns JSON
-
 POST /api/workouts
 for creating a workout
 accepts JSON
 resturns JSON
+*/
+
+router.post("/api/workouts", (req, res) => {
+  // determine day
+  const day = Date.now();
+
+  db.Workout.create({...req.body, day})
+    .then(dbWorkout => {
+      res.json(dbWorkout);
+    })
+    .catch(err => {
+      console.log(err);
+      res.json(err);
+    });
+});
+
+/*
+Routes needed:
 
 GET /api/workouts/range
 for getting workouts within a range
