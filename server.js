@@ -1,12 +1,23 @@
 // import dependencies
 const express = require("express");
+const mongoose = require("mongoose");
 
 // create the app
 const app = express();
 const PORT = process.env.PORT || 8080;
 
+// parse JSON in request bodies
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+
 // send public file
 app.use(express.static("./public"));
+
+// connect to database
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/workout", { 
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
 
 // add routes
 app.use(require("./controllers/html-routes.js"));
