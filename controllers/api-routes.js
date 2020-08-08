@@ -20,8 +20,30 @@ router.get("/api/workouts", (req, res) => {
     })
     .catch(err => {
       res.json(err);
+    });
+});
+
+/*
+PUT /api/workouts/:id
+for adding an exercise to a workout
+accepts JSON
+returns JSON
+*/
+
+router.put("/api/workouts/:id", (req, res) => {
+  // define options for update
+  const filter = { _id: req.params.id };
+  const update = { $push: { exercises: req.body } };
+
+  // new: true returns the updated workout object
+  db.Workout.findOneAndUpdate(filter, update, {new: true })
+    .then(dbWorkout => {
+      res.json(dbWorkout);
     })
-})
+    .catch(err => {
+      res.json(err);
+    });
+});
 
 /*
 Routes needed:
