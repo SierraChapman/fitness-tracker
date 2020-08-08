@@ -49,7 +49,7 @@ router.put("/api/workouts/:id", (req, res) => {
 POST /api/workouts
 for creating a workout
 accepts JSON
-resturns JSON
+returns JSON
 */
 
 router.post("/api/workouts", (req, res) => {
@@ -67,13 +67,21 @@ router.post("/api/workouts", (req, res) => {
 });
 
 /*
-Routes needed:
-
 GET /api/workouts/range
-for getting workouts within a range
+for getting last seven workouts
 returns JSON
-
 */
+
+router.get("/api/workouts/range", (req, res) => {
+  db.Workout.find({})
+    .then(dbWorkout => {
+      // return only last 7
+      res.json(dbWorkout.slice(dbWorkout.length - 7));
+    })
+    .catch(err => {
+      res.json(err);
+    });
+});
 
 // export router
 module.exports = router;
